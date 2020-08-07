@@ -1,7 +1,7 @@
 import java.util.Stack;
 
 public class LC20_isValid {
-    public static boolean isValid(String s) {
+    public boolean isValid(String s) {
         if (s == null || s.length() == 0) return true;
 
         Stack<Character> stack = new Stack<>();
@@ -26,6 +26,7 @@ public class LC20_isValid {
 
 
     public static void main(String[] args) {
-        System.out.println(isValid("("));
+        LC20_isValid solution = new LC20_isValid();
+        System.out.println(solution.isValid("("));
     }
 }

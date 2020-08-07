@@ -1,8 +1,7 @@
 import java.util.Stack;
 
-import static leetcode.LC20_isValid.isValid;
 
-public class longestValidParentheses32 {
+public class LC32_longestValidParentheses_old {
 
     /**
      * 1、先把 -1 放入栈内。（至于为什么？看到后面你就知道了）
@@ -62,7 +61,7 @@ public class longestValidParentheses32 {
         return maxlength;
     }
 
-    public static int longestValidParentheses_timeOut(String s) {
+    public int longestValidParentheses_timeOut(String s) {
         if (s == null || s.length() == 0) return 0;
         int max = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -73,6 +72,26 @@ public class longestValidParentheses32 {
             }
         }
         return max;
+    }
+
+    public boolean isValid(String s) {
+        if (s == null || s.length() == 0) return true;
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else {
+                if (stack.isEmpty()) return false;
+                char top = stack.pop();
+                if (c == ')' && top != '(') return false;
+                if (c == ']' && top != '[') return false;
+                if (c == '}' && top != '{') return false;
+            }
+        }
+        return stack.isEmpty();
     }
 
 
