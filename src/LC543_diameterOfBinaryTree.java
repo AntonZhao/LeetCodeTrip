@@ -13,4 +13,8 @@ public class LC543_diameterOfBinaryTree {
         ans = Math.max(ans, L + R);
         return Math.max(L, R) + 1;
     }
+
+    public static void main(String[] args) {
+
+    }
 }

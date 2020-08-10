@@ -1,39 +1,44 @@
 public class LC92_reverseBetween {
-    // 迭代
-    public static ListNode reverseBetween(ListNode head, int m, int n) {
-       if (head == null) return null;
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        if (head == null) return null;
+        if (m == n) return head;
 
-       ListNode cur = head, prev = null;
-       // 移动两个指针，到达开始节点的前一个。
-       while (m > 1) {
-           prev = cur;
-           cur = cur.next;
-           m--;
-           n--;
-       }
-       // tail是翻转段的最后一个，con是第一段的最后一个
-       ListNode con = prev, tail = cur;
+        // 第一段：0 ~ m，可能不存在； 旧的第二段：m ~ n
+        ListNode firstSegmentTail = null, SecondSegmentHead = head;
+        while (m > 1) {
+            firstSegmentTail = SecondSegmentHead;
+            SecondSegmentHead = SecondSegmentHead.next;
+            m--;
+            n--;
+        }
 
-       ListNode third = null;
-       while (n > 0) {
-           third = cur.next;
-           cur.next = prev;
-           prev = cur;
-           cur = third;
-           n--;
-       }
+        // 反转 m-n+1 次，之后，prev落在反转段的最后一个，也就是反转后的反转段的第一个；
+        // cur可以视作是 n + 1 ~ end 这段的头结点，可能为空
+        ListNode prev = null;
+        ListNode cur = SecondSegmentHead;
+        while (n > 0) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+            n--;
+        }
 
-       if (con != null) {
-           con.next = prev;
-       } else {
-           head = prev;
-       }
+        // 如果 m=1 的话，就没有第一段了，所以需要判断
+        if (firstSegmentTail != null) {
+            firstSegmentTail.next = prev;
+        } else {
+            head = prev;
+        }
 
-       tail.next = cur;
-       return head;
+        SecondSegmentHead.next = cur;
+
+        return head;
     }
 
     public static void main(String[] args) {
+        LC92_reverseBetween ll = new LC92_reverseBetween();
+
         ListNode head = new ListNode(1);
         ListNode _h = head;
         for (int i = 2; i <= 5; i++) {
@@ -42,6 +47,6 @@ public class LC92_reverseBetween {
             _h = _h.next;
         }
 
-        System.out.println(reverseBetween(head, 2, 4).val);
+        System.out.println(ll.reverseBetween(head, 2, 4).val);
     }
 }
