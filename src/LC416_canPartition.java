@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class LC416_canPartition {
     /**
      * leetcode-416 分割等和子集 【中等】
