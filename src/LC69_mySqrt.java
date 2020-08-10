@@ -23,4 +23,33 @@ public class LC69_mySqrt {
         }
         return (int) x;
     }
+
+    /**
+     * 求一个数的平方根，精确到0.01
+     */
+
+    public static double mySqrt_double(int num) {
+        if (num < 0) return 0;
+
+        double left = 0, right = num / 2;
+
+        while (left < right) {
+            double mid = (left + right) / 2;
+            if (Math.abs(mid*mid - num) <= 0.01)
+                return mid;
+            if ((mid * mid - num) > 0.01) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+
+        return left;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(mySqrt_double(8));
+        System.out.println(mySqrt_double(9));
+        System.out.println(Math.sqrt(8));
+    }
 }

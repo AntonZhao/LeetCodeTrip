@@ -1,7 +1,9 @@
+import java.util.Arrays;
+
 public class LC912_sortArray {
     public int[] sortArray(int[] nums) {
-//        quickSort(nums, 0, nums.length - 1);
-        mergeSort(nums, 0, nums.length - 1);
+        quickSort(nums, 0, nums.length - 1);
+//        mergeSort(nums, 0, nums.length - 1);
         return nums;
     }
 
@@ -60,6 +62,10 @@ public class LC912_sortArray {
     public static void main(String[] args) {
         LC912_sortArray ll = new LC912_sortArray();
         int[] nums = new int[]{5, 1, 1, 2, 0, 0};
-        System.out.println(ll.partition(nums, 0, nums.length - 1));
+//        System.out.println(ll.partition(nums, 0, nums.length - 1));
+        ll.sortArray(nums);
+        for (int i = 0; i < nums.length; i++) {
+            System.out.print(nums[i] + " ");
+        }
     }
 }
