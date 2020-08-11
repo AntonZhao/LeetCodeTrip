@@ -31,10 +31,9 @@ public class 马走日 {
             sop(a);
             count++;
         }
-        int tx = 0, ty = 0;
         for (int i = 0; i < next.length; i++) {
-            tx = x + next[i][0];
-            ty = y + next[i][1];
+            int tx = x + next[i][0];
+            int ty = y + next[i][1];
             if (tx < 0 || tx >= n || ty < 0 || ty >= m) {
                 continue;
             }
