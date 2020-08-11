@@ -9,19 +9,16 @@ public class LC141_hasCycle {
      * 如果链表有环，两个节点会相遇，相遇则返回true
      * 另外相遇的这个地方是环的入口，神奇吧
      */
-    public static boolean hasCycle(ListNode head) {
-        if(head == null)
-            return false;
-        ListNode i = head;
-        ListNode j = head.next;
+    public boolean hasCycle(ListNode head) {
+        if (head == null) return false;
 
-        while(i != null && j != null && j.next != null){
-            if(i == j){
-                return true;
-            }
+        ListNode slow = head;
+        ListNode fast = head.next;
 
-            i = i.next;
-            j = j.next.next;
+        while (slow != null && fast != null && fast.next != null) {
+            if (slow == fast) return true;
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
         return false;

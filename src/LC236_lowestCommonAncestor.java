@@ -12,27 +12,23 @@ public class LC236_lowestCommonAncestor {
      *   因为二叉树只有从顶向下的信息，所以需要记录从下到上的信息
      * 优秀题解：
      */
-    public TreeNode lowestCommonAncestor_recursion(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null)
-            return null;
-        if (root == p)
-            return p;
-        if (root == q)
-            return q;
 
-        TreeNode left = lowestCommonAncestor_recursion(root.left, p , q);
-        TreeNode right = lowestCommonAncestor_recursion(root.right, p, q);
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == root || q == root) return root;
+
+        TreeNode leftFind = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightFind = lowestCommonAncestor(root.right, p, q);
+
         // 在两边分别找到了p和q，所以root就是最近的祖先节点了
-        if (left != null && right != null)
-            return root;
-        // 或者在当前的root的某一边，返回去再递归找
-        if (left != null)
-            return left;
-        if (right != null)
-            return right;
+        if (leftFind != null && rightFind != null) return root;
+
+        if (leftFind != null) return leftFind;
+        if (rightFind != null) return rightFind;
 
         return null;
     }
+
+
     /**
      * ----------------------------------迭代方法--------------------------------------------------
      */
@@ -47,7 +43,7 @@ public class LC236_lowestCommonAncestor {
             dfs(root.right);
         }
     }
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor_ite(TreeNode root, TreeNode p, TreeNode q) {
         // 先去记录父节点的信息
         dfs(root);
         Set<TreeNode> visited = new HashSet<>();

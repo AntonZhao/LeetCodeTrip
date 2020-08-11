@@ -24,4 +24,17 @@ public class LC235_lowestCommonAncestor {
         }
         return root;
     }
+
+    public TreeNode lowestCommonAncestor_recursion(TreeNode root, TreeNode p, TreeNode q) {
+        if (root.val == p.val) return p;
+        if (root.val == q.val) return q;
+
+        // 根据二叉搜索树特性，都大就在右边，都小就在左边
+        if (p.val > root.val && q.val > root.val)
+            return lowestCommonAncestor(root.right, p, q);
+        else if (p.val < root.val && q.val < root.val)
+            return lowestCommonAncestor(root.left, p, q);
+        else
+            return root;
+    }
 }
