@@ -28,6 +28,7 @@ public class LC46_permute {
                 // 注意：这里是状态重置，是从深层结点回到浅层结点的过程，代码在形式上和递归之前是对称的
                 used[i] = false;
                 path.remove(depth);
+                path.remove(path.size());
             }
         }
     }
