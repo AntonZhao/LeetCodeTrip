@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class LC20_isValid {
@@ -28,5 +30,12 @@ public class LC20_isValid {
     public static void main(String[] args) {
         LC20_isValid solution = new LC20_isValid();
         System.out.println(solution.isValid("("));
+
+        String curr = "";
+        curr += "}";
+        System.out.println(curr);
+
+        List<String> res = new ArrayList<>();
+        res.add(new String(curr));
     }
 }

@@ -7,26 +7,26 @@ public class LC22_generateParenthesis {
      * 思路：递归的方式，先生成左，再生成右，可以连续生成左，右只能左有了才能生成。
      * 优秀题解：
      */
-    private List<String> res;
+    List<String> res;
+    int size;
 
     public List<String> generateParenthesis(int n) {
-        res = new ArrayList<>();
-        _generate(0, 0, n, "");
+        this.res = new ArrayList<>();
+        this.size = n;
+        generate(0, 0, "");
         return res;
     }
 
-    private void _generate(int left, int right, int n, String s) {
-        //terminator
-        if (left == n && right == n) {
-            res.add(s);
-            return;
+    void generate(int left, int right, String curr) {
+        if (left == size && right == size) {
+            res.add(new String(curr));
         }
-        //process & drill down
-        if (left < n) {
-            _generate(left + 1, right, n, s + "(");
+
+        if (left < size) {
+            generate(left + 1, right, curr + "(");
         }
         if (left > right) {
-            _generate(left, right + 1, n, s + ")");
+            generate(left, right + 1, curr + ")");
         }
     }
 
