@@ -13,7 +13,7 @@ public class LC235_lowestCommonAncestor {
         // 开始层序遍历
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             TreeNode temp = queue.poll();
             if (temp.val >= smallNode.val && temp.val <= bigNode.val)
                 return temp;
@@ -30,11 +30,8 @@ public class LC235_lowestCommonAncestor {
         if (root.val == q.val) return q;
 
         // 根据二叉搜索树特性，都大就在右边，都小就在左边
-        if (p.val > root.val && q.val > root.val)
-            return lowestCommonAncestor(root.right, p, q);
-        else if (p.val < root.val && q.val < root.val)
-            return lowestCommonAncestor(root.left, p, q);
-        else
-            return root;
+        if (p.val > root.val && q.val > root.val) return lowestCommonAncestor(root.right, p, q);
+        if (p.val < root.val && q.val < root.val) return lowestCommonAncestor(root.left, p, q);
+        return root;
     }
 }
