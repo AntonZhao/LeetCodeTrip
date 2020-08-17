@@ -71,5 +71,14 @@ public class JZ40_getLeastNumbers {
         for (int num : res) {
             System.out.print(num + " ");
         }
+
+        System.out.println();
+
+        int[] nums = {3, 2, 1, 5, 6, 4};
+        int k = 2;
+        int[] nums_ = jj.getLeastNumbers(nums, k);
+        for (int num : nums_) {
+            System.out.print(num + " ");
+        }
     }
 }
