@@ -1,4 +1,8 @@
 public class LC557_reverseWords {
+
+    /**
+     * 需要额外空间
+     */
     public String reverseWords(String s) {
         String[] words = s.split(" ");
         StringBuilder builder = new StringBuilder();
@@ -36,5 +40,8 @@ public class LC557_reverseWords {
         System.out.println(ll.reverseWords("Let's take LeetCode contest"));
 
         System.out.println(ll.reverseOnlyLetters("a-bC-dEf-ghIj"));
+
     }
+
+
 }
