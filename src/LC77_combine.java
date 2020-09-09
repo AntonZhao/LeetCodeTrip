@@ -3,27 +3,20 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LC77_combine {
-    private List<List<Integer>> res;
-    private int k;
-    private int n;
-
     public List<List<Integer>> combine(int n, int k) {
-        this.res = new LinkedList<>();
-        this.k = k;
-        this.n = n;
-        backtrack(1, new LinkedList<>());
+        List<List<Integer>> res = new ArrayList<>();
+        dfs(res, new LinkedList<>(), k, n, 1);
         return res;
     }
 
-    private void backtrack(int first, LinkedList<Integer> curr) {
-        if (curr.size() == k) {
-            res.add(new LinkedList<>(curr));
-            System.out.println(curr);
-            return;
-        }
-        for (int i = first; i <= n; i++) {
+    private void dfs(List<List<Integer>> res, LinkedList<Integer> curr, int k, int n, int start) {
+        for (int i = start; i <= n; i++) {
             curr.add(i);
-            backtrack(i + 1, curr);
+            if (curr.size() == k) {
+                res.add(new LinkedList<>(curr));
+            } else {
+                dfs(res, curr, k, n, i+1);
+            }
             curr.removeLast();
         }
     }
