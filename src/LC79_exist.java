@@ -1,28 +1,37 @@
 public class LC79_exist {
+
     public boolean exist(char[][] board, String word) {
-        char[] w = word.toCharArray();
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
-                if (dfs(board, y, x, w, 0)) return true;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (dfs(i, j, 0, board, word))
+                    return true;
             }
         }
         return false;
     }
 
-    private boolean dfs(char[][] board, int y, int x, char[] word, int i) {
-        if (i == word.length)
+    private boolean dfs(int row, int col, int depth, char[][] board, String word) {
+        if (depth == word.length())
             return true;
-        if (y < 0 || x < 0 || y == board.length || x == board[y].length)
+        if (row < 0 || row == board.length || col < 0 || col == board[0].length)
             return false;
-        if (board[y][x] != word[i])
+        if (board[row][col] != word.charAt(depth))
             return false;
 
-        board[y][x] = '*';
-        boolean exist = dfs(board, y, x + 1, word, i + 1)
-                || dfs(board, y, x - 1, word, i + 1)
-                || dfs(board, y + 1, x, word, i + 1)
-                || dfs(board, y - 1, x, word, i + 1);
-        board[y][x] = word[i];
+        board[row][col] = '*';
+        boolean exist = dfs(row + 1, col, depth + 1, board, word)
+                || dfs(row - 1, col, depth + 1, board, word)
+                || dfs(row, col + 1, depth + 1, board, word)
+                || dfs(row, col - 1, depth + 1, board, word);
+        board[row][col] = word.charAt(depth);
         return exist;
     }
+
+    public static void main(String[] args) {
+        LC79_exist ll = new LC79_exist();
+        char[][] board = {{'a'}};
+        System.out.println(ll.exist(board, "a"));
+    }
+
+
 }

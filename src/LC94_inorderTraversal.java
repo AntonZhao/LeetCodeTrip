@@ -4,18 +4,16 @@ public class LC94_inorderTraversal {
     //递归方法
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        inorderTraversal(root, res);
+        _inorder(root, res);
         return res;
     }
 
-    private void inorderTraversal(TreeNode node, List<Integer> res) {
-        if (node != null) {
-            if (node.left != null)
-                inorderTraversal(node.left, res);
-            res.add(node.val);
-            if (node.right != null)
-                inorderTraversal(node.right, res);
-        }
+    void _inorder(TreeNode node, List<Integer> res) {
+        if (node == null)
+            return;
+        _inorder(node.left, res);
+        res.add(node.val);
+        _inorder(node.right, res);
     }
 
     //迭代访问，维护一个栈
