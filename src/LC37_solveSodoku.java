@@ -1,4 +1,4 @@
-public class LC37_solveSodoku {
+public class    LC37_solveSodoku {
     public void solveSudoku(char[][] board) {
         if (board == null || board.length == 0)
             return;
@@ -53,5 +53,7 @@ public class LC37_solveSodoku {
             }
             System.out.println();
         }
+
+
     }
 }
