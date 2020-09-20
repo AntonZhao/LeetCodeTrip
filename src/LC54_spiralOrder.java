@@ -14,14 +14,12 @@ public class LC54_spiralOrder {
                 res.add(matrix[rowBegin][i]);
             }
             rowBegin++;
-
             if (rowBegin > rowEnd) break;
 
             for (int i = rowBegin; i <= rowEnd; i++) {
                 res.add(matrix[i][colEnd]);
             }
             colEnd--;
-
             if (colEnd < colBegin) break;
 
             for (int i = colEnd; i >= colBegin; i--) {
@@ -35,7 +33,6 @@ public class LC54_spiralOrder {
                 res.add(matrix[i][colBegin]);
             }
             colBegin++;
-
             if (colBegin > colEnd) break;
         }
 

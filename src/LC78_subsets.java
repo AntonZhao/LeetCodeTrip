@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class LC78_subsets {
@@ -30,5 +31,6 @@ public class LC78_subsets {
         LC78_subsets ll = new LC78_subsets();
         int[] nums = {1, 2, 3};
         System.out.println(ll.subsets(nums));
+        LinkedList<Integer> list = new LinkedList<>();
     }
 }
